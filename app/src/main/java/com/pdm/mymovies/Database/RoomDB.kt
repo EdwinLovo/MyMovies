@@ -5,12 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.pdm.mymovies.Database.daos.MovieDAO
+import com.pdm.mymovies.Database.daos.MovieDetailDAO
 import com.pdm.mymovies.Database.entities.Movie
+import com.pdm.mymovies.Database.entities.MovieDetail
 
-@Database(entities = [Movie::class], version = 1, exportSchema = false)
+@Database(entities = [MovieDetail::class, Movie::class], version = 1, exportSchema = false)
 
 public abstract class RoomDB : RoomDatabase() {
 
+    abstract fun movieDetailsDao():MovieDetailDAO
     abstract fun movieDao():MovieDAO
 
     companion object {

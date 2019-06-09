@@ -12,12 +12,12 @@ import com.pdm.mymovies.Database.entities.Movie
 interface MovieDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(movies:Movie)
+    suspend fun insert(movie:Movie)
 
-    @Query("SELECT*FROM movies")
+    @Query("SELECT*FROM movie")
     fun getAllMovies():LiveData<List<Movie>>
 
-    @Query("DELETE FROM movies")
+    @Query("DELETE FROM movie")
     suspend fun nukeTable()
 
 }
