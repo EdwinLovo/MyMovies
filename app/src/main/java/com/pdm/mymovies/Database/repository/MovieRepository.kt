@@ -30,7 +30,7 @@ class MovieRepository(private val movieDao:MovieDAO,private val movieDetailDAO: 
     suspend fun nukeDetailedMovies() = movieDetailDAO.nukeTable()
 
     fun retrieveMoviesAsync(movie:String): Deferred<Response<List<Movie>>> =
-        MoviesService.getMovieService().getMovies(movie)
+        MoviesService.getMovieService().getMovies("55b04979",movie)
 
     fun retrieveDetailMoviesAsync(movie:String): Deferred<Response<List<MovieDetail>>> =
         MoviesService.getMovieService().getDetailedMovie(movie)

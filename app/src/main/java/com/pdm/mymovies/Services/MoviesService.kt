@@ -9,17 +9,24 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 
-const val GITHUB_BASE_URL = "http://www.omdbapi.com/"
+
+
+const val GITHUB_BASE_URL = "https://www.omdbapi.com/"
 const val TOKEN_API = "55b04979"
 
 interface MoviesService{
 
-    @GET("?apikey=$TOKEN_API&s={movie}")
-    fun getMovies(@Path("movie") movie:String): Deferred<Response<List<Movie>>>
-
-    @GET("?apikey=$TOKEN_API&t={movie}")
+    @GET("/&s={movie}")
+    fun getMovies(@Path("movie") movie:String,@Query("apikey") apikey:String): Deferred<Response<List<Movie>>>
+/*
+    @GET("/&t={movie}")
+    fun getDetailedMovie(@Path("movie") movie:String,@Query("apikey") apikey:String): Deferred<Response<List<MovieDetail>>>
+*/
+    @GET("/?apikey=55b04979&t={movie}")
     fun getDetailedMovie(@Path("movie") movie:String): Deferred<Response<List<MovieDetail>>>
 
 
