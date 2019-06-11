@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
 
         var adapter = object : MovieAdapter(view.context){}
         val recyclerView = view.recyclerviewMovies
+        recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
         movieViewModel.allMovies.observe(this, Observer { movies ->
