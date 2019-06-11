@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_favorite_black_24dp"
         android:title="Favorites"/>
 
+    <item
+        android:id="@+id/destination_movie_details"
+        android:icon="@drawable/ic_timer_black_24dp"
+        android:title="Last Movie"/>
+
 </menu>
