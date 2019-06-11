@@ -9,7 +9,7 @@ import com.pdm.mymovies.Database.daos.MovieDetailDAO
 import com.pdm.mymovies.Database.entities.Movie
 import com.pdm.mymovies.Database.entities.MovieDetail
 
-@Database(entities = [MovieDetail::class, Movie::class], version = 1, exportSchema = false)
+@Database(entities = [MovieDetail::class, Movie::class], version = 3, exportSchema = false)
 
 public abstract class RoomDB : RoomDatabase() {
 
@@ -30,6 +30,7 @@ public abstract class RoomDB : RoomDatabase() {
                 synchronized(this) {
                     INSTANCE = Room
                         .databaseBuilder(context, RoomDB::class.java, "Movie_Database")
+                        .fallbackToDestructiveMigration()
                         .build()
                     return INSTANCE!!
                 }

@@ -1,6 +1,8 @@
 package com.pdm.mymovies.Models
 
 import android.app.Application
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -41,14 +43,17 @@ class MovieViewModel (private val app: Application): AndroidViewModel(app){
     fun retrieveMovies(movie:String) = viewModelScope.launch(Dispatchers.IO){
         this@MovieViewModel.nukemovies()
         val response=repository.retrieveMoviesAsync(movie).await()
-        if(response.isSuccessful) with(response){
-            this.body()?.forEach{
+
+        if (response.isSuccessful) with(response.body()?.search){
+            this?.forEach {
                 this@MovieViewModel.insertMovie(it)
+                Log.d("CODIGO", it.Title+" ingresada correctamente")
             }
-        }else with(response){
+        } else with(response){
+            Log.d("CODIGO", "Error: $response")
             when(this.code()){
                 404->{
-                    android.widget.Toast.makeText(app,"Movie not found", android.widget.Toast.LENGTH_LONG).show()
+                    Toast.makeText(app, "Movie not found", Toast.LENGTH_LONG).show()
                 }
             }
         }

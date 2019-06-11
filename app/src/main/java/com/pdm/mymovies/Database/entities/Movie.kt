@@ -9,21 +9,13 @@ import com.squareup.moshi.Json
 @Entity(tableName = "movie")
 data class Movie (
     @PrimaryKey
-    @field:Json(name = "imdbID")
-    val id: String,
+    val imdbID: String,
 
-    @field:Json(name = "Title")
-    val title: String,
+    val Title: String,
 
-    @field:Json(name = "Year")
-    @ColumnInfo(name="Year")
-    val year:String,
+    val Year:String,
 
-    @field:Json(name = "Poster")
-    @ColumnInfo(name="Poster")
-    val poster:String,
+    val Poster:String,
 
-    @field:Json(name = "Type")
-    @ColumnInfo(name="Type")
-    val type:String
+    val Type:String
 )

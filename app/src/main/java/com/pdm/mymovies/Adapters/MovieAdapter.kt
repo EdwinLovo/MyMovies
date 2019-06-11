@@ -28,12 +28,12 @@ abstract class MovieAdapter internal constructor(private val context: Context):R
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val currentMovie = movies[position]
-        holder.title.text = currentMovie.title
-        holder.type.text = currentMovie.type
-        holder.year.text = currentMovie.year
+        holder.title.text = currentMovie.Title
+        holder.type.text = currentMovie.Type
+        holder.year.text = currentMovie.Year
 
         Glide.with(context)
-            .load(currentMovie.poster)
+            .load(currentMovie.Poster)
             .centerCrop()
             .crossFade()
             .diskCacheStrategy(DiskCacheStrategy.ALL)

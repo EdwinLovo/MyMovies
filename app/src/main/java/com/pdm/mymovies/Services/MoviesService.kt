@@ -20,8 +20,13 @@ const val TOKEN_API = "55b04979"
 
 interface MoviesService{
 
-    @GET("/&s={movie}")
+    @GET("/")
+    fun getMovies(@Query("s") clue:String, @Query("apikey") apikey:String):Deferred<Response<Coincidences>>
+
+    /*@GET("/&s={movie}")
     fun getMovies(@Path("movie") movie:String,@Query("apikey") apikey:String): Deferred<Response<List<Movie>>>
+    */
+
 /*
     @GET("/&t={movie}")
     fun getDetailedMovie(@Path("movie") movie:String,@Query("apikey") apikey:String): Deferred<Response<List<MovieDetail>>>

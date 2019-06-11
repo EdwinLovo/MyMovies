@@ -6,6 +6,7 @@ import com.pdm.mymovies.Database.daos.MovieDAO
 import com.pdm.mymovies.Database.daos.MovieDetailDAO
 import com.pdm.mymovies.Database.entities.Movie
 import com.pdm.mymovies.Database.entities.MovieDetail
+import com.pdm.mymovies.Services.Coincidences
 import com.pdm.mymovies.Services.MoviesService
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
@@ -29,8 +30,8 @@ class MovieRepository(private val movieDao:MovieDAO,private val movieDetailDAO: 
     @WorkerThread
     suspend fun nukeDetailedMovies() = movieDetailDAO.nukeTable()
 
-    fun retrieveMoviesAsync(movie:String): Deferred<Response<List<Movie>>> =
-        MoviesService.getMovieService().getMovies("55b04979",movie)
+    fun retrieveMoviesAsync(movie:String): Deferred<Response<Coincidences>> =
+        MoviesService.getMovieService().getMovies(movie,"55b04979")
 
     fun retrieveDetailMoviesAsync(movie:String): Deferred<Response<List<MovieDetail>>> =
         MoviesService.getMovieService().getDetailedMovie(movie)
