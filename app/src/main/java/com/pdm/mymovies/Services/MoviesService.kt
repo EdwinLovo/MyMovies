@@ -23,6 +23,9 @@ interface MoviesService{
     @GET("/")
     fun getMovies(@Query("s") clue:String, @Query("apikey") apikey:String):Deferred<Response<Coincidences>>
 
+    @GET("/")
+    fun getDetailedMovie(@Query("t") clue:String, @Query("apikey") apikey:String):Deferred<Response<MovieDetail>>
+
     /*@GET("/&s={movie}")
     fun getMovies(@Path("movie") movie:String,@Query("apikey") apikey:String): Deferred<Response<List<Movie>>>
     */
@@ -31,8 +34,11 @@ interface MoviesService{
     @GET("/&t={movie}")
     fun getDetailedMovie(@Path("movie") movie:String,@Query("apikey") apikey:String): Deferred<Response<List<MovieDetail>>>
 */
+
+/*
     @GET("/?apikey=55b04979&t={movie}")
     fun getDetailedMovie(@Path("movie") movie:String): Deferred<Response<List<MovieDetail>>>
+*/
 
 
     companion object {

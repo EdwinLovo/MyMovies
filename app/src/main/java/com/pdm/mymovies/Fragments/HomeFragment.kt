@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pdm.mymovies.Adapters.MovieAdapter
 import com.pdm.mymovies.Models.MovieViewModel
@@ -35,7 +36,15 @@ class HomeFragment : Fragment() {
 
         movieViewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
 
-        var adapter = object : MovieAdapter(view.context){}
+        var adapter = object : MovieAdapter(view.context){
+            override fun setClickListenerToMovie(holder: MovieViewHolder, movieName: String) {
+                holder.movieLinearLayout.setOnClickListener {
+                    movieViewModel.retrieveDetailMovies(movieName)
+                    val nextAction = HomeFragmentDirections.nextAction()
+                    Navigation.findNavController(it).navigate(nextAction)
+                }
+            }
+        }
         val recyclerView = view.recyclerviewMovies
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(view.context)

@@ -19,6 +19,8 @@ abstract class MovieAdapter internal constructor(private val context: Context):R
     private var inflater = LayoutInflater.from(context)
     private var movies = emptyList<Movie>()
 
+    abstract fun setClickListenerToMovie(holder: MovieViewHolder, movieName:String)
+
     override fun getItemCount() = movies.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -39,6 +41,7 @@ abstract class MovieAdapter internal constructor(private val context: Context):R
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.poster)
 
+        setClickListenerToMovie(holder,currentMovie.Title)
     }
 
     inner class MovieViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){

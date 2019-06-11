@@ -15,7 +15,7 @@ class MovieRepository(private val movieDao:MovieDAO,private val movieDetailDAO: 
 
     //get movie
     val AllMovies: LiveData<List<Movie>> = movieDao.getAllMovies()
-    val AllDetailedMovies: LiveData<List<MovieDetail>> = movieDetailDAO.getAllDetailedMovies()
+    val AllDetailedMovies: LiveData<MovieDetail> = movieDetailDAO.getAllDetailedMovies()
 
     //insert movie
     @WorkerThread
@@ -33,6 +33,6 @@ class MovieRepository(private val movieDao:MovieDAO,private val movieDetailDAO: 
     fun retrieveMoviesAsync(movie:String): Deferred<Response<Coincidences>> =
         MoviesService.getMovieService().getMovies(movie,"55b04979")
 
-    fun retrieveDetailMoviesAsync(movie:String): Deferred<Response<List<MovieDetail>>> =
-        MoviesService.getMovieService().getDetailedMovie(movie)
+    fun retrieveDetailMoviesAsync(movie:String): Deferred<Response<MovieDetail>> =
+        MoviesService.getMovieService().getDetailedMovie(movie, "55b04979")
 }

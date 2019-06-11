@@ -15,7 +15,7 @@ interface MovieDetailDAO {
     suspend fun insert(movieDetail:MovieDetail)
 
     @Query("SELECT*FROM moviedetail")
-    fun getAllDetailedMovies():LiveData<List<MovieDetail>>
+    fun getAllDetailedMovies():LiveData<MovieDetail>
 
     @Query("DELETE FROM moviedetail")
     suspend fun nukeTable()

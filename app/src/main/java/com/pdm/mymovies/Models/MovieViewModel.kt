@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 class MovieViewModel (private val app: Application): AndroidViewModel(app){
     private val repository : MovieRepository
     val allMovies : LiveData<List<Movie>>
-    val allDetailedMovies : LiveData<List<MovieDetail>>
+    val allDetailedMovies : LiveData<MovieDetail>
 
 
     init {
@@ -62,9 +62,8 @@ class MovieViewModel (private val app: Application): AndroidViewModel(app){
         this@MovieViewModel.nukedetailedmovies()
         val response=repository.retrieveDetailMoviesAsync(movie).await()
         if(response.isSuccessful) with(response){
-            this.body()?.forEach{
-                this@MovieViewModel.insertDetailedMovie(it)
-            }
+                this@MovieViewModel.insertDetailedMovie(response.body()!!)
+            Log.d("CODIGO", "Ingresada: "+response.body()?.title)
         }else with(response){
             when(this.code()){
                 404->{
