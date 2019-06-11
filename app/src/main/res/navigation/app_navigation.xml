@@ -13,11 +13,6 @@
         <action android:id="@+id/next_action"
                 app:destination="@id/destination_movie_details"/>
     </fragment>
-    <fragment
-            android:id="@+id/destination_favorites"
-            android:name="com.pdm.mymovies.Fragments.FavoritesFragment"
-            android:label="Favorites"
-            tools:layout="@layout/fragment_favorites"/>
     <fragment android:id="@+id/destination_movie_details" android:name="com.pdm.mymovies.Fragments.MovieDetailsFragment"
               android:label="Movie Details" tools:layout="@layout/fragment_movie_details"/>
 </navigation>

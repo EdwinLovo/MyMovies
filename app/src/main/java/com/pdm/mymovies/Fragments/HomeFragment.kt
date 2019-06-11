@@ -1,6 +1,7 @@
 package com.pdm.mymovies.Fragments
 
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.pdm.mymovies.Adapters.MovieAdapter
 import com.pdm.mymovies.Models.MovieViewModel
 
@@ -40,8 +42,10 @@ class HomeFragment : Fragment() {
             override fun setClickListenerToMovie(holder: MovieViewHolder, movieName: String) {
                 holder.movieLinearLayout.setOnClickListener {
                     movieViewModel.retrieveDetailMovies(movieName)
-                    val nextAction = HomeFragmentDirections.nextAction()
-                    Navigation.findNavController(it).navigate(nextAction)
+                    if(orientation()){
+                        val nextAction = HomeFragmentDirections.nextAction()
+                        Navigation.findNavController(it).navigate(nextAction)
+                    }
                 }
             }
         }
@@ -52,7 +56,6 @@ class HomeFragment : Fragment() {
         movieViewModel.allMovies.observe(this, Observer { movies ->
             movies?.let { adapter.setMovies(it) }
         })
-
         /*search.setOnClickListener {
             movieViewModel.retrieveMovies(title.text.toString())
         }*/
@@ -62,5 +65,8 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+    fun orientation():Boolean=resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+
 
 }
